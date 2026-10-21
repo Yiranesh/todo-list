@@ -1,0 +1,131 @@
+* { box-sizing: border-box; }
+
+/* Notebook paper background with blue ruled lines */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.2rem;
+  color: #333;
+  background-color: #fffef7;
+  background-image: repeating-linear-gradient(
+    transparent, transparent 31px, #cfe3f5 31px, #cfe3f5 32px
+  );
+}
+
+/* The card looks like a notebook page with a purple shadow */
+.card {
+  position: relative;
+  width: 90%;
+  max-width: 440px;
+  padding: 24px 24px 24px 52px;
+  background: #fffef7;
+  border: 3px solid #333;
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 #c9b8e8;
+}
+
+/* Spiral binding holes down the left side */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  width: 20px;
+  background: radial-gradient(circle, #333 5px, transparent 6px) 0 0 / 20px 30px repeat-y;
+}
+
+/* Title with a yellow highlighter effect */
+h1 {
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding: 0 8px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 2rem;
+  background: linear-gradient(transparent 55%, #fbe38e 55%);
+}
+
+.add-row { display: flex; gap: 8px; }
+
+input, select {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: white;
+  font-family: inherit;
+  font-size: 1.1rem;
+}
+
+input { flex: 1; }
+
+button {
+  padding: 8px 14px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: #a8e6a1;
+  color: #333;
+  font-family: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button:hover { background: #8fd68a; }
+
+ul { list-style: none; padding: 0; margin-top: 20px; }
+
+/* Each task looks like a sticky note row */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: white;
+  border: 2px solid #333;
+  border-left: 8px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Pastel priority colours */
+li.high { border-left-color: #f28b8b; }
+li.medium { border-left-color: #f7c873; }
+li.low { border-left-color: #8fd19e; }
+
+li button { background: #f4a3a3; padding: 4px 10px; }
+li button:hover { background: #ee8a8a; }
+
+/* Smaller screens: put the input on its own line */
+@media (max-width: 480px) {
+  .add-row { flex-wrap: wrap; }
+  input { flex: 1 1 100%; }
+  select, #addBtn { flex: 1; }
+}
+
+/* 1. New tasks slide in */
+li { animation: slideIn 0.3s ease; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Friendly message when the list is empty */
+ul:empty::before {
+  content: "No tasks yet, add one above! ";
+  display: block;
+  text-align: center;
+  color: #888;
+}
+
+/* 3. Glow around the input when typing */
+input:focus {
+  outline: none;
+  border-color: #b39ddb;
+  box-shadow: 0 0 0 3px #e6dcf7;
+}
