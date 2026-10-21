@@ -3,7 +3,7 @@
 This is a simple to-do list I made using HTML, CSS and JavaScript for the CS Society technical evaluation. It has a notebook style design and lets you add tasks, set a priority and delete them.
 
 ## Live Demo
-todo-list-jnjy.onrender.com
+https://todo-list-jnjy.onrender.com
 
 ## Features
 - Add a task by clicking the Add button or pressing Enter
